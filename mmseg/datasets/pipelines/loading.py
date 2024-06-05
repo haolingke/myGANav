@@ -43,7 +43,7 @@ class LoadImageFromFile(object):
         """Call functions to load image and get image meta information.
 
         Args:
-            results (dict): Result dict from :obj:`mmseg.CustomDataset`.
+            results (dict): Result dict from :obj:`mmseg.BaseSegDataset`.
 
         Returns:
             dict: The dict contains loaded image and meta information.
@@ -114,7 +114,7 @@ class LoadAnnotations(object):
         """Call function to load multiple types annotations.
 
         Args:
-            results (dict): Result dict from :obj:`mmseg.CustomDataset`.
+            results (dict): Result dict from :obj:`mmseg.BaseSegDataset`.
 
         Returns:
             dict: The dict contains loaded semantic segmentation annotations.

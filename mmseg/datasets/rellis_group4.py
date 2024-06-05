@@ -1,25 +1,25 @@
-from .builder import DATASETS
-from .custom import CustomDataset
+
+from mmseg.registry import DATASETS
+from .basesegdataset import BaseSegDataset
 
 
 @DATASETS.register_module()
-class RELLISDataset_Group4(CustomDataset):
+class RELLISDataset_Group4(BaseSegDataset):
     """RELLIS dataset.
 
     """
 
+    METAINFO = dict(
+        classes = ("background", "L1 (Smooth)", "non-Nav (Forbidden)", "obstacle"),
+        palette = [[ 0, 0, 0 ], [ 0,128,0 ],
+            [ 255, 0, 0 ],[  0, 0, 128] ])
 
+    
 
-    CLASSES = ("background", "L1 (Smooth)", "non-Nav (Forbidden)", "obstacle")
-
-    PALETTE = [[ 0, 0, 0 ], [ 0,128,0 ],
-            [ 255, 0, 0 ],[  0, 0, 128] ]
-
-    def __init__(self, **kwargs):
-        super(RELLISDataset_Group4, self).__init__(
-            img_suffix='.jpg',
+    def __init__(self,img_suffix='.jpg',
             seg_map_suffix='_group4.png',
+            **kwargs) -> None:
+        super().__init__(
+            img_suffix=img_suffix,
+            seg_map_suffix=seg_map_suffix,
             **kwargs)
-        self.CLASSES = ("background", "L1 (Smooth)", "non-Nav (Forbidden)", "obstacle")
-        self.PALETTE = [[ 0, 0, 0 ], [ 0,128,0 ],
-            [ 255, 0, 0 ],[  0, 0, 128] ]

@@ -1,18 +1,22 @@
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0005)
+optimizer = dict(type='AdamW', lr=0.001, weight_decay=0.1)
 optim_wrapper = dict(type='OptimWrapper', optimizer=optimizer, clip_grad=None)
 # learning policy
 param_scheduler = [
     dict(
-        type='PolyLR',
-        eta_min=1e-4,
+        type='LinearLR', start_factor=3e-2, begin=0, end=12000,
+        by_epoch=False),
+    dict(
+        type='PolyLRRatio',
+        eta_min_ratio=3e-2,
         power=0.9,
-        begin=0,
-        end=20000,
-        by_epoch=False)
+        begin=12000,
+        end=24000,
+        by_epoch=False),
+    dict(type='ConstantLR', by_epoch=False, factor=1, begin=24000, end=25000)
 ]
-# training schedule for 20k
-train_cfg = dict(type='IterBasedTrainLoop', max_iters=20000, val_interval=2000)
+# training schedule for 25k
+train_cfg = dict(type='IterBasedTrainLoop', max_iters=25000, val_interval=1000)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 default_hooks = dict(

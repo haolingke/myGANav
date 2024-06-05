@@ -1,9 +1,9 @@
 from .builder import DATASETS
-from .custom import CustomDataset
+from .custom import BaseSegDataset
 
 
 @DATASETS.register_module()
-class RELLISDataset(CustomDataset):
+class RELLISDataset(BaseSegDataset):
     """RELLIS dataset.
 - 0: void
   1: dirt

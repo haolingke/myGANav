@@ -1,9 +1,9 @@
 from .builder import DATASETS
-from .custom import CustomDataset
+from .custom import BaseSegDataset
 
 
 @DATASETS.register_module()
-class RELLISDataset_Group6_New(CustomDataset):
+class RELLISDataset_Group6_New(BaseSegDataset):
     """RELLIS dataset.
 
     """

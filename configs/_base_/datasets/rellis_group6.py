@@ -1,4 +1,5 @@
 # dataset settings
+#还没改
 dataset_type = 'RELLISDataset_Group6'
 data_root = 'data/rellis/'
 img_norm_cfg = dict(
